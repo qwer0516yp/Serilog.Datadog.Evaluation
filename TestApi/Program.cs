@@ -1,5 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Load User Secrets in Development Mode
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
+
 // Add services to the container.
 // configure Serilog
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
